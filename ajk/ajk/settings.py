@@ -88,3 +88,15 @@ ITEM_PIPELINES = {
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+DOWNLOADER_MIDDLEWARES_BASE = {
+    'scrapy.contrib.downloadermiddleware.robotstxt.RobotsTxtMiddleware': 100,
+    'scrapy.contrib.downloadermiddleware.httpauth.HttpAuthMiddleware': 300,
+    'scrapy.contrib.downloadermiddleware.useragent.UserAgentMiddleware': 400,
+    'scrapy.contrib.downloadermiddleware.retry.RetryMiddleware': 500,
+    'scrapy.contrib.downloadermiddleware.defaultheaders.DefaultHeadersMiddleware': 550,
+    'scrapy.contrib.downloadermiddleware.cookies.CookiesMiddleware': 700,
+    'scrapy.contrib.downloadermiddleware.httpproxy.HttpProxyMiddleware': 750,
+    'scrapy.contrib.downloadermiddleware.httpcompression.HttpCompressionMiddleware': 800,
+    'scrapy.contrib.downloadermiddleware.stats.DownloaderStats': 850,
+    'scrapy.contrib.downloadermiddleware.httpcache.HttpCacheMiddleware': 900,
+}

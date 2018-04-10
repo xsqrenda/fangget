@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 import scrapy
+from scrapy.loader import ItemLoader
+
+from ajk.items import AjkItem
 
 
 class AnjukeSpider(scrapy.Spider):
     name = 'anjuke'
     allowed_domains = ['https://beijing.anjuke.com/sale/']
-    start_urls = ['http://https://beijing.anjuke.com/sale//']
+    start_urls = ['https://beijing.anjuke.com/sale/']
 
     def parse(self, response):
         next_url = response.xpath(
@@ -26,7 +29,7 @@ class AnjukeSpider(scrapy.Spider):
     def parse_detail(self, response):
         houseinfo = response.xpath('//*[@class="houseInfo-wrap"]')
         if houseinfo:
-            l = ItemLoader(AnjukeItem(), houseinfo)
+            l = ItemLoader(AjkItem(), houseinfo)
             l.add_xpath('mode', '//div/div[2]/dl[1]/dd/text()')
             l.add_xpath('area', '//div/div[2]/dl[2]/dd/text()')
             l.add_xpath('floor', '//div/div[2]/dl[4]/dd/text()')
